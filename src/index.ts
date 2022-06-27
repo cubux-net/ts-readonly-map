@@ -1,0 +1,15 @@
+export * from './deep';
+export { default as every } from './every';
+export { default as filter } from './filter';
+export { default as find } from './find';
+export { default as findKey } from './findKey';
+export { default as getOr } from './getOr';
+export { default as includes } from './includes';
+export { default as map } from './map';
+export { default as merge } from './merge';
+export { default as reduce } from './reduce';
+export { default as remove } from './remove';
+export { default as set } from './set';
+export { default as some } from './some';
+export { default as update } from './update';
+export { default as updateDefault } from './updateDefault';
