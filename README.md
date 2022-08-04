@@ -191,6 +191,29 @@ findKey(input, (_, k) => k === k.toUpperCase());
 
 See also `find()`.
 
+### `fromArray()`
+
+```ts
+fromArray(
+  array:   readonly T[],
+  calcKey: (item: T) => K,
+): ReadonlyMap<K, T>
+```
+
+Creates a map from simple array of items, calculating corresponding key for
+every item with the given callback `calcKey()`.
+
+```ts
+fromArray([1, 2, 3], (v) => v * 10)
+// => Map(3) { 10 => 1, 20 => 2, 30 => 3 }
+```
+
+This is a shortcut for commonly used operation:
+
+```js
+new Map(array.map(v => [calcKey(v), v]))
+```
+
 ### `getOr()`
 
 ```ts
