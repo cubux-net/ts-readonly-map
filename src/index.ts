@@ -3,6 +3,7 @@ export { default as every } from './every';
 export { default as filter } from './filter';
 export { default as find } from './find';
 export { default as findKey } from './findKey';
+export { default as fromArray } from './fromArray';
 export { default as getOr } from './getOr';
 export { default as includes } from './includes';
 export { default as map } from './map';

@@ -8,6 +8,7 @@ it('common', () => {
   expect(M.filter(EMPTY, Boolean)).toBe(EMPTY);
   expect(M.find(EMPTY, Boolean)).toBeUndefined();
   expect(M.findKey(EMPTY, Boolean)).toBeUndefined();
+  expect(M.fromArray([], Boolean)).toEqual(EMPTY);
   expect(M.getOr(EMPTY, 42, DEF)).toBe(DEF);
   expect(M.includes(EMPTY, 42)).toBeFalsy();
   expect(M.map(EMPTY, v => v)).toBe(EMPTY);
