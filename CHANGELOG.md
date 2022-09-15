@@ -1,8 +1,8 @@
 # Changelog
 
-## 1.0.1 (DEV)
+## 1.1.0 (2022-09-15)
 
-- Add: `fromArray()`;
+- Add: `fromArray()`.
 
 ## 1.0.0 (2022-06-27)
 
