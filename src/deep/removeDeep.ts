@@ -8,9 +8,9 @@ function removeDeepInner(
   if (!map.has(key)) {
     return map;
   }
-  const next = new Map(map);
   const child = map.get(key)!;
   if (path.length === 1 || !(child instanceof Map)) {
+    const next = new Map(map);
     next.delete(key);
     return next;
   }
@@ -18,6 +18,7 @@ function removeDeepInner(
   if (nextChild === child) {
     return map;
   }
+  const next = new Map(map);
   if (nextChild.size) {
     next.set(key, nextChild);
   } else {
