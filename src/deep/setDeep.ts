@@ -29,7 +29,7 @@ function setDeepInner<T extends ReadonlyMap<any, any>>(
     return map;
   }
 
-  return (new Map(map).set(key, nextChild) as ReadonlyMap<any, any>) as T;
+  return new Map(map).set(key, nextChild) as ReadonlyMap<any, any> as T;
 }
 
 /**

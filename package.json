@@ -1,6 +1,6 @@
 {
   "name": "@cubux/readonly-map",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "Functions to work with read-only maps",
   "keywords": [
     "map",
@@ -31,27 +31,36 @@
     "README.md"
   ],
   "engines": {
-    "node": ">=14"
+    "node": ">=18"
   },
   "scripts": {
-    "start": "tsdx watch",
-    "build": "tsdx build",
-    "test": "tsdx test",
-    "test:watch": "tsdx test --watch",
-    "test:coverage": "tsdx test --coverage",
-    "lint": "tsdx lint",
-    "prepare": "tsdx build",
-    "size": "size-limit",
-    "analyze": "size-limit --why"
+    "build": "dts build",
+    "start": "dts watch",
+    "prepare": "dts build",
+    "test": "tsc --noEmit && dts test --passWithNoTests",
+    "test:watch": "npm test -- --watch",
+    "test:coverage": "npm test -- --coverage",
+    "analyze": "size-limit --why",
+    "lint": "dts lint",
+    "size": "size-limit"
+  },
+  "peerDependencies": {
+    "typescript": "^3 || ^4 || ^5"
+  },
+  "peerDependenciesMeta": {
+    "typescript": {
+      "optional": true
+    }
   },
   "devDependencies": {
-    "@size-limit/preset-small-lib": "^7.0.8",
+    "@size-limit/preset-small-lib": "^11.0.0",
+    "@tsconfig/recommended": "^1.0.3",
+    "dts-cli": "^2.0.3",
     "husky": "^8.0.1",
-    "lint-staged": "^13.0.2",
-    "size-limit": "^7.0.8",
-    "tsdx": "^0.14.1",
-    "tslib": "^2.4.0",
-    "typescript": "^3.9.10"
+    "lint-staged": "^15.2.0",
+    "size-limit": "^11.0.0",
+    "tslib": "^2.6.2",
+    "typescript": "~5.0"
   },
   "lint-staged": {
     "src/**/*.{js,ts,json}": [

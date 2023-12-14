@@ -16,7 +16,7 @@ const orig = new Map([
 
 const copyMap = <M extends ReadonlyMap<any, ReadonlyMap<any, any>>>(
   map: M,
-): M => mapFn(map, m => new Map(m)) as any;
+): M => mapFn(map, (m) => new Map(m)) as any;
 
 it('does not change original map', () => {
   const prev = copyMap(orig);

@@ -12,7 +12,7 @@ it('creates map', () => {
     { id: 30, name: 'Lu Lu' },
   ];
 
-  expect(fromArray(array, v => v.id)).toEqual(
+  expect(fromArray(array, (v) => v.id)).toEqual(
     new Map([
       [10, { id: 10, name: 'John Random' }],
       [20, { id: 20, name: 'Pupkin Vasily' }],

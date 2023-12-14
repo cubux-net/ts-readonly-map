@@ -20,7 +20,7 @@ function fromArray<T, K>(
   array: readonly T[],
   calcKey: (item: T) => K,
 ): ReadonlyMap<K, T> {
-  return new Map(array.map(item => [calcKey(item), item]));
+  return new Map(array.map((item) => [calcKey(item), item]));
 }
 
 export default fromArray;

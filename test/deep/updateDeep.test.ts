@@ -17,12 +17,12 @@ const orig: ReadonlyMap<number, ReadonlyMap<number, string>> = new Map([
 
 const copyMap = <M extends ReadonlyMap<any, ReadonlyMap<any, any>>>(
   map: M,
-): M => mapFn(map, m => new Map(m)) as any;
+): M => mapFn(map, (m) => new Map(m)) as any;
 
 it('does not change original map', () => {
   const prev = copyMap(orig);
 
-  expect(updateDeep(prev, [97, 37], v => v + v)).toEqual(
+  expect(updateDeep(prev, [97, 37], (v) => v + v)).toEqual(
     new Map([
       [
         97,
@@ -37,7 +37,7 @@ it('does not change original map', () => {
   expect(prev).toEqual(orig);
 
   expect(
-    updateDeep(prev, [97], m => setFn(setFn(m, 10, 'xx'), 20, 'zz')),
+    updateDeep(prev, [97], (m) => setFn(setFn(m, 10, 'xx'), 20, 'zz')),
   ).toEqual(
     new Map([
       [

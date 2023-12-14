@@ -16,12 +16,12 @@ const orig: ReadonlyMap<number, ReadonlyMap<number, string>> = new Map([
 
 const copyMap = <M extends ReadonlyMap<any, ReadonlyMap<any, any>>>(
   map: M,
-): M => mapFn(map, m => new Map(m)) as any;
+): M => mapFn(map, (m) => new Map(m)) as any;
 
 it('does not change original map', () => {
   const prev = copyMap(orig);
 
-  expect(updateDefaultDeep(prev, [97, 47], '?', v => v + v)).toEqual(
+  expect(updateDefaultDeep(prev, [97, 47], '?', (v) => v + v)).toEqual(
     new Map([
       [
         97,
@@ -40,7 +40,7 @@ it('does not change original map', () => {
 it('will create new maps', () => {
   const prev = copyMap(orig);
 
-  expect(updateDefaultDeep(prev, [91, 17], '?', v => v + 'q')).toEqual(
+  expect(updateDefaultDeep(prev, [91, 17], '?', (v) => v + 'q')).toEqual(
     new Map([
       [97, origA],
       [41, origB],
@@ -55,8 +55,8 @@ it("does nothing when it's nothing to change", () => {
 
   const noop = jest.fn((v: any) => v);
   expect(updateDefaultDeep(prev, [97, 42], '?', noop)).toBe(prev);
-  expect(updateDefaultDeep(prev, [97, 42], null, v => v)).toBe(prev);
-  expect(updateDefaultDeep(prev, [97, 42], null, v => v ?? '')).toBe(prev);
+  expect(updateDefaultDeep(prev, [97, 42], null, (v) => v)).toBe(prev);
+  expect(updateDefaultDeep(prev, [97, 42], null, (v) => v ?? '')).toBe(prev);
   expect(updateDefaultDeep(prev, [97], null as any, noop)).toBe(prev);
   expect(noop).toHaveBeenCalledTimes(2);
   expect(noop).toHaveBeenNthCalledWith(1, 'x');
