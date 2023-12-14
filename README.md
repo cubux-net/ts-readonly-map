@@ -694,8 +694,8 @@ See also `update()`, `updateDefaultDeep()`, `setDeep()`.
 updateDefault(
   map:          ReadonlyMap<K, V>,
   key:          K,
-  defaultValue: V,
-  updater:      (prev: V, key: K, map: ReadonlyMap<K, V>) => V,
+  defaultValue: V | D,
+  updater:      (prev: V | D, key: K, map: ReadonlyMap<K, V>) => V,
 ): ReadonlyMap<K, V>
 ```
 
