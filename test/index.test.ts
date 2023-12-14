@@ -18,7 +18,7 @@ it('common', () => {
   expect(M.set(EMPTY, 42, 37)).toEqual(new Map([[42, 37]]));
   expect(M.some(EMPTY, Boolean)).toBeFalsy();
   expect(M.update(EMPTY, 42, () => DEF)).toBe(EMPTY);
-  expect(M.updateDefault(EMPTY, 42, DEF, v => [v] as any)).toEqual(
+  expect(M.updateDefault(new Map<number, any>(), 42, DEF, v => [v])).toEqual(
     new Map([[42, [DEF]]]),
   );
 

@@ -32,11 +32,11 @@ import set from './set';
  * @param defaultValue
  * @param updater
  */
-function updateDefault<K, V>(
+function updateDefault<K, V, D = never>(
   map: ReadonlyMap<K, V>,
   key: K,
-  defaultValue: V,
-  updater: (prev: V, key: K, map: ReadonlyMap<K, V>) => V,
+  defaultValue: V | D,
+  updater: (prev: V | D, key: K, map: ReadonlyMap<K, V>) => V,
 ): ReadonlyMap<K, V> {
   return set(
     map,
