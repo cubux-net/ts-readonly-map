@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.2.0 (DEV)
+## 1.2.0 (2023-12-14)
 
 - Add: `updateDefault()` now allows different type for `default` value.
 
