@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.1 (2023-12-21)
+
+- Fix: `updateDefault()` since `1.2.0` in some cases could inference unnecessary
+  annoying `V | D` in untyped callback param even when `D` is already a subtype
+  of `V`. See test cases for details.
+
 ## 2.0.0 (2023-12-14)
 
 - **BREAKING**: Drop Node < 18.

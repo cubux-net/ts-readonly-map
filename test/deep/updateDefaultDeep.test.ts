@@ -63,3 +63,49 @@ it("does nothing when it's nothing to change", () => {
   expect(noop).toHaveBeenNthCalledWith(2, origA);
   expect(prev).toEqual(orig);
 });
+
+describe('default is subtype', () => {
+  interface Patch {
+    n?: number;
+    s?: string;
+  }
+  type M = ReadonlyMap<number, ReadonlyMap<number, Patch>>;
+
+  const orig: M = new Map();
+
+  it('full', () => {
+    const next = updateDefaultDeep(orig, [10, 20], { n: 1, s: '' }, (p) => {
+      const { n, s } = p;
+      return { n, s };
+    });
+    const m: M = next;
+    expect(m.has(10)).toBeTruthy();
+  });
+
+  it('partial', () => {
+    const next = updateDefaultDeep(orig, [10, 20], { n: 1 }, (p) => {
+      const { n, s } = p;
+      return { n, s };
+    });
+    const m: M = next;
+    expect(m.has(10)).toBeTruthy();
+  });
+
+  it('{}', () => {
+    const next = updateDefaultDeep(orig, [10, 20], {}, (p) => {
+      const { n, s } = p;
+      return { n, s };
+    });
+    const m: M = next;
+    expect(m.has(10)).toBeTruthy();
+  });
+
+  it('alt', () => {
+    const next = updateDefaultDeep(orig, [10, 20], null, (p) => {
+      const { n, s } = p || {};
+      return { n, s };
+    });
+    const m: M = next;
+    expect(m.has(10)).toBeTruthy();
+  });
+});

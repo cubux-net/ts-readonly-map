@@ -1,4 +1,21 @@
+import { NoInfer } from './_internal';
 import set from './set';
+
+interface updateDefaultFn {
+  <K, V>(
+    map: ReadonlyMap<K, V>,
+    key: K,
+    defaultValue: NoInfer<V>,
+    updater: (prev: V, key: K, map: ReadonlyMap<K, V>) => V,
+  ): ReadonlyMap<K, V>;
+
+  <K, V, D = never>(
+    map: ReadonlyMap<K, V>,
+    key: K,
+    defaultValue: V | D,
+    updater: (prev: V | D, key: K, map: ReadonlyMap<K, V>) => V,
+  ): ReadonlyMap<K, V>;
+}
 
 /**
  * Creates new map from input `map` by updating value in the given `key` with
@@ -45,4 +62,4 @@ function updateDefault<K, V, D = never>(
   );
 }
 
-export default updateDefault;
+export default updateDefault as updateDefaultFn;

@@ -66,3 +66,54 @@ it("alternate 'default' type", () => {
   const expected2: ReadonlyMap<number, string> = next2;
   expect(expected2.get(42)).toBe('x*');
 });
+
+describe('default is subtype', () => {
+  interface Patch {
+    n?: number;
+    s?: string;
+  }
+  type M = ReadonlyMap<number, Patch>;
+
+  const orig: M = new Map();
+
+  it('full', () => {
+    const next = updateDefault(orig, 10, { n: 1, s: '' }, (p) => {
+      const { n, s } = p;
+      return { n, s };
+    });
+    const m: M = next;
+    expect(m.has(10)).toBeTruthy();
+  });
+
+  it('partial', () => {
+    const next = updateDefault(orig, 10, { n: 1 }, (p) => {
+      // `p` must be `Patch` here, not `Patch | { n:number }`,
+      // so `s` is known
+      const { n, s } = p;
+      return { n, s };
+    });
+    const m: M = next;
+    expect(m.has(10)).toBeTruthy();
+  });
+
+  it('{}', () => {
+    const next = updateDefault(orig, 10, {}, (p) => {
+      // `p` must be `Patch` here, not `Patch | {}`,
+      // so `n` and `s` are known
+      const { n, s } = p;
+      return { n, s };
+    });
+    const m: M = next;
+    expect(m.has(10)).toBeTruthy();
+  });
+
+  it('alt', () => {
+    const next = updateDefault(orig, 10, null, (p) => {
+      // `p` must be `Patch | null` here
+      const { n, s } = p || {};
+      return { n, s };
+    });
+    const m: M = next;
+    expect(m.has(10)).toBeTruthy();
+  });
+});

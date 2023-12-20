@@ -1,6 +1,6 @@
 {
   "name": "@cubux/readonly-map",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Functions to work with read-only maps",
   "keywords": [
     "map",
